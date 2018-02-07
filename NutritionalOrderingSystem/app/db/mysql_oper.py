@@ -1,9 +1,9 @@
 # coding: utf-8
 import pymysql as mysql
-from user import User
+from app.entity import entity_user
 
 
-user = User()
+user = entity_user.User()
 cur = None
 
 # 建立连接

@@ -1,15 +1,15 @@
 # coding: utf-8
-from flask import Flask, flash, session, render_template, request, redirect, url_for
+from flask import Flask, session, render_template, request, redirect, url_for
 
-import mysql_oper
-import user
+from app.db import mysql_oper
+from app.entity import entity_user
 
 app = Flask(__name__)
 # 加密符，可以忽略
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 # 全局变量
-g_user = user.User()
+G_USER = entity_user.User()
 
 
 # ------------- #
@@ -44,7 +44,7 @@ def web_account():
 def web_analysis():
     try:
         set_standard_value(session)
-    except Exception as err:
+    except ValueError as err:
         print("except: " + str(err))
     return render_template("analysis.html", header_title="营养订餐-分析")
 
@@ -70,27 +70,27 @@ def act_login():
 
 # 账户验证
 def valid_login(username, password):
-    global g_user
-    g_user = mysql_oper.find_data(username)
-    if g_user is not None:
-        if password == g_user.password:
+    global G_USER
+    G_USER = mysql_oper.find_data(username)
+    if G_USER is not None:
+        if password == G_USER.password:
             return True
     return False
 
 
 # 同步session
 def refresh_session(sess):
-    sess['username'] = g_user.username
-    sess['nickname'] = g_user.nickname
-    sess['address'] = g_user.address
-    sess['phoneNumber'] = g_user.phoneNumber
-    sess['gender'] = g_user.gender
-    sess['age'] = g_user.age
-    sess['height'] = g_user.height
-    sess['weight'] = g_user.weight
-    sess['waist'] = g_user.waist
-    sess['BFR'] = g_user.BFR
-    sess['BMR'] = g_user.BMR
+    sess['username'] = G_USER.username
+    sess['nickname'] = G_USER.nickname
+    sess['address'] = G_USER.address
+    sess['phoneNumber'] = G_USER.phoneNumber
+    sess['gender'] = G_USER.gender
+    sess['age'] = G_USER.age
+    sess['height'] = G_USER.height
+    sess['weight'] = G_USER.weight
+    sess['waist'] = G_USER.waist
+    sess['BFR'] = G_USER.BFR
+    sess['BMR'] = G_USER.BMR
     return True
 
 
@@ -107,8 +107,8 @@ def act_register():
     username = request.form['username']
     password = request.form['user_pwd1']
     mysql_oper.insert_data(username, password)
-    global g_user
-    g_user = mysql_oper.find_data(username)
+    global G_USER
+    G_USER = mysql_oper.find_data(username)
     refresh_session(session)
     return redirect(url_for('web_account'))
 
@@ -123,22 +123,22 @@ def act_refresh_data():
     # 计算，然后更新数据库更新session
     request.charset = "UTF-8"
     edit_id = request.form["edit-id"]
-    username = request.form["username"]
+    # username = request.form["username"]
 
     value = ""
     if edit_id == "BFR":
         bfr = float()
-        if g_user.gender == "女":
-            bfr = float((g_user.waist * 0.74 - g_user.weight * 0.082 - 34.89) / g_user.weight * 100)
+        if G_USER.gender == "女":
+            bfr = float((G_USER.waist * 0.74 - G_USER.weight * 0.082 - 34.89) / G_USER.weight * 100)
         else:
-            bfr = float((g_user.waist * 0.74 - g_user.weight * 0.082 - 44.74) / g_user.weight * 100)
+            bfr = float((G_USER.waist * 0.74 - G_USER.weight * 0.082 - 44.74) / G_USER.weight * 100)
         value = ("%.2f" % bfr)
     elif edit_id == "BMR":
         bmr = float()
-        if g_user.gender == "男":
-            bmr = float(g_user.weight * 13.7 + g_user.height * 0.5 - 6.8 * g_user.age + 66)
+        if G_USER.gender == "男":
+            bmr = float(G_USER.weight * 13.7 + G_USER.height * 0.5 - 6.8 * G_USER.age + 66)
         else:
-            bmr = float(g_user.weight * 9.6 + g_user.height * 1.8 - 4.7 * g_user.age + 665)
+            bmr = float(G_USER.weight * 9.6 + G_USER.height * 1.8 - 4.7 * G_USER.age + 665)
         value = ("%.2f" % bmr)
 
     # 数据库操作
@@ -264,7 +264,7 @@ if __name__ == "__main__":
 
     try:
         mysql_oper.create_connect()
-    except Exception as err:
+    except TimeoutError as err:
         print("except: " + str(err))
 
     # app.run()
