@@ -7,4 +7,4 @@ install:
   - pip install pymysql
   
 script:
-  - pytest
+  - pytest FlaskProject/main.py
