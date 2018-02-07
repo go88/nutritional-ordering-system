@@ -8,7 +8,7 @@ conn = mysql.connect(
     port=3309,
     user="root",
     passwd="123456",
-    db="test_flask",
+    db="nutritional_ordering_system",
 )
 user = User()
 cur = conn.cursor()

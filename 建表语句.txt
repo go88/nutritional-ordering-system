@@ -1,6 +1,6 @@
-create database seproject;
+create database nutritional_ordering_system;
 
-use seproject;
+use nutritional_ordering_system;
 
 Create table tb_user(
 username varchar(30) primary key not NULL,
