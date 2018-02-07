@@ -1,11 +1,9 @@
 language: python
 python:
   - "3.6"
-  - "3.6-dev"
-  - "nightly"
 
 install:
   - pip install flask
   
 script:
-  - pytest
+  - python FlaskProject/main.py

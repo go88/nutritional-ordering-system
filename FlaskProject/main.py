@@ -261,6 +261,12 @@ def set_standard_value(sess):
 
 
 if __name__ == "__main__":
+
+    try:
+        mysql_oper.create_connect()
+    except Exception as err:
+        print("except: " + str(err))
+
     # app.run()
     # 默认使用
     # app.run(host="0.0.0.0")
