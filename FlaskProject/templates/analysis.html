@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>营养分析</title>
+    {% include 'includes/meta_and_link.html' %}
+</head>
+
+<body>
+<!-- 导航栏  -->
+{% include 'includes/header.html' %}
+<!-- 内容  -->
+{% if not session["username"] %}
+<center>
+    <hr>
+    <h1>未登录</h1>
+    <hr>
+    <h3>请先登录</h3>
+    <form action="/login">
+        <button type="submit" class="am-btn am-btn-primary btn-wide">登陆</button>
+    </form>
+</center>
+{% else %}
+<center>
+    <h1>我的体质分析</h1>
+    <hr>
+    <div class="am-g">
+        <div class="am-u-sm-3">&nbsp;</div>
+        <div class="am-u-sm-3">标准</div>
+        <div class="am-u-sm-3">我的</div>
+        <div class="am-u-sm-3">情况</div>
+    </div>
+    <hr>
+    <div class="am-g">
+        <div class="am-u-sm-3">身高：</div>
+        <div class="am-u-sm-3">--</div>
+        <div class="am-u-sm-3">{{session["height"]}}CM</div>
+        <div class="am-u-sm-3">
+            <div class="analysis-div">--</div>
+        </div>
+    </div>
+    <hr>
+    <div class="am-g">
+        <div class="am-u-sm-3">体重：</div>
+        <div class="am-u-sm-3">--</div>
+        <div class="am-u-sm-3">{{session["weight"]}}Kg</div>
+        <div class="am-u-sm-3">
+            <div class="analysis-div">--</div>
+        </div>
+    </div>
+    <hr>
+    <div class="am-g">
+        <div class="am-u-sm-3">BMI：</div>
+        <div class="am-u-sm-3">{{session["standardBMI"]}}</div>
+        <div class="am-u-sm-3">{{session["BMI"]}}</div>
+        <div class="am-u-sm-3">
+            <div class="analysis-div" id="div-BMI">{{session["resultBMI"]}}</div>
+        </div>
+    </div>
+    <hr>
+    <div class="am-g">
+        <div class="am-u-sm-3">体脂：</div>
+        <div class="am-u-sm-3">{{session["standardBFR"]}}</div>
+        <div class="am-u-sm-3">{{session["BFR"]}}%</div>
+        <div class="am-u-sm-3">
+            <div class="analysis-div" id="div-BFR">{{session["resultBFR"]}}</div>
+        </div>
+    </div>
+    <hr>
+    <div class="am-g">
+        <div class="am-u-sm-3">代谢：</div>
+        <div class="am-u-sm-3">{{session["standardBMR"]}}KJ</div>
+        <div class="am-u-sm-3">{{session["BMR"]}}KJ</div>
+        <div class="am-u-sm-3">
+            <div class="analysis-div" id="div-BMR">{{session["resultBMR"]}}</div>
+        </div>
+    </div>
+    <hr>
+    <form action="action/create_menu" method="post">
+        <button type="submit" class="am-btn am-btn-default">生成我的营养餐谱</button>
+    </form>
+</center>
+{% endif %}
+<!-- 底部栏  -->
+{% include 'includes/footer.html' %}
+<!-- JavaScript放在这里提高性能 -->
+<script type="text/javascript">
+    window.onload = function () {
+        var resultBMI = '{{session["resultBMI"]}}';//肥胖指数
+        var resultBFR = '{{session["resultBFR"]}}';//体脂
+        var resultBMR = '{{session["resultBMR"]}}';//代谢
+
+        if (resultBMI == "过轻") {
+            $("#div-BMI").addClass("color-low");
+        } else if (resultBMI == "适中") {
+            $("#div-BMI").addClass("color-std");
+        } else if (resultBMI == "过重") {
+            $("#div-BMI").addClass("color-high");
+        } else {
+            $("#div-BMI").addClass("color-very-high");
+        }
+
+        if (resultBFR == "运动员") {
+            $("#div-BFR").addClass("color-low");
+        } else if (resultBFR == "健康") {
+            $("#div-BFR").addClass("color-std");
+        } else if (resultBFR == "偏胖") {
+            $("#div-BFR").addClass("color-high");
+        } else {
+            $("#div-BFR").addClass("color-very-high");
+        }
+
+        if (resultBMR == "较低") {
+            $("#div-BMR").addClass("color-low");
+        } else if (resultBMR == "正常") {
+            $("#div-BMR").addClass("color-std");
+        } else if (resultBMR == "较高") {
+            $("#div-BMR").addClass("color-high");
+        } else {
+            $("#div-BMR").addClass("color-very-high");
+        }
+    };
+</script>
+</body>
+</html>

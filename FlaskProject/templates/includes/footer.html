@@ -1,0 +1,17 @@
+<footer class="am-topbar am-topbar-inverse am-topbar-fixed-bottom">
+    <ul class="am-avg-sm-3">
+        <li><a id="footer-a" href="/index"><span>首页</span></a></li>
+        <li><a id="footer-a" href="analysis"><span>营养分析</span></a></li>
+        {%
+        if not session["username"]
+        %}
+        <li><a id="footer-a" href="/login"><span>登录</span></a></li>
+        {%
+        else
+        %}
+        <li><a id="footer-a" href="/account"><span>我的</span></a></li>
+        {%
+        endif
+        %}
+    </ul>
+</footer>

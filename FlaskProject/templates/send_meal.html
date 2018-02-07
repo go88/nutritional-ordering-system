@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>送餐</title>
+    {% include 'includes/meta_and_link.html' %}
+</head>
+
+<body>
+<!-- 导航栏  -->
+{% include 'includes/header.html' %}
+<!-- 内容  -->
+<center>
+    <div>
+        <img src="static/img/slideshow/01.jpg" class="am-img-responsive" alt=""/>
+        <div>订单编号：</div>
+        <div>12345656467</div>
+    </div>
+    <hr>
+    <hr>
+    <div>
+        <table class="am-table am-table-bordered">
+            <thead>
+            <tr>
+                <td>配送中</td>
+            </tr>
+            </thead>
+            <tr>
+                <td>12 ：20 正在配送：小二（联系电话：11111111111）</td>
+            </tr>
+            <tr>
+                <td>11 ：50 已取货：小二（联系电话：11111111111）</td>
+            </tr>
+            <tr>
+                <td>11 ：45 菜品就绪</td>
+            </tr>
+            <tr>
+                <td>11 ：34 菜品准备</td>
+            </tr>
+            <tr>
+                <td>11 ：30 下单成功</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div class="am-btn-group">
+        <button type="button" class="am-btn am-btn-default">确认收货</button>
+        <button type="button" class="am-btn am-btn-default">取消订单</button>
+    </div>
+</center>
+<!-- 底部栏  -->
+{% include 'includes/footer.html' %}
+</body>
+</html>

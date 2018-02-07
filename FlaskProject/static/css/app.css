@@ -1,0 +1,184 @@
+#footer-a {
+	text-align: center;
+	line-height: 50px;
+}
+
+#footer-a span {
+	display: block;
+}
+
+.btn-login {
+	width: 120px;
+	height: 40px;
+}
+
+.btn-wide {
+	width: 150px;
+	height: 50px;
+}
+
+.p-error {
+	color: red;
+}
+
+.no-padding-margin {
+	margin: 0 auto;
+	padding: 0;
+}
+
+.no-style-header-button {
+	/*margin-top: 15px;*/
+	background: none;
+	border: 0px;
+}
+
+.no-style-list-button {
+	margin-top: 7px;
+	background: none;
+	border: 0px;
+}
+
+.account-username-panel {
+	height: 150px;
+	background: #0e90d2;
+	font-size: 20px;
+	line-height: 150px;
+}
+
+.account-img {
+	float: left;
+	margin-left: 15px;
+	margin-top: 15px;
+	width: 80px;
+	height: 80px;
+}
+
+.account-p {
+	font-size: 30px;
+	float: left;
+	height: 80px;
+	margin-left: 25px;
+	line-height: 120px
+}
+
+.color-low {
+	background: #C0C0C0;
+}
+.color-std{
+	background: #00FF00;
+}
+.color-high{
+	background: #FFFF00;
+}
+.color-very-high {
+	background: #FF0000;
+}
+
+.analysis-div {
+	margin: 0 auto;
+	width: 50px;
+	height: 25px;
+}
+
+/* index css */
+#recommend {
+	margin-left: 15px;
+	font-size: 20px;
+}
+
+.am-slider-default .am-control-nav {
+	width: 100%;
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+}
+
+#line {
+	heihght: 2px;
+	width: 100%;
+	color: black;
+}
+
+#menu {
+	margin-top: 30px;
+	width: 80%;
+	height: 40px;
+	background-color: #fff;
+	border: 1px solid gray;
+}
+
+#index-btn {
+	margin-top: 30px;
+	width: 15%;
+	height: 40px;
+	border-radius: 15%;
+	margin-left: 5px;
+	background-color: #fff;
+	border: 1px solid gray;
+}
+
+/* send-meal css */
+.send-left {
+	width: 30%;
+	height: 400px;
+	margin-left: 400px;
+	float: left;
+}
+
+.send-img {
+	width: 300px;
+	height: 300px;
+	margin-top: 100px;
+	margin-left: 200px;
+}
+
+.send-d1 {
+	width: 80px;
+	height: 20px;
+	margin-left: 250px;
+	margin-top: 30px;
+}
+
+.send-d2 {
+	width: 50px;
+	height: 20px;
+	margin-top: -20px;
+	margin-left: 330px;
+}
+
+.send-right {
+	width: 30%;
+	height: 400px;
+	margin-top: 100px;
+	margin-right: 350px;
+	float: right;
+}
+
+.send-table {
+	border: solid 1px black;
+}
+
+.send-td {
+	width: 400px;
+	height: 50px;
+}
+
+.send-t1 {
+	background-color: #41C7DB;
+}
+
+.send-tail {
+	width: 400px;
+	height: 60px;
+	margin-left: 750px;
+	margin-top: 30px;
+	float: left;
+}
+
+.send-b1 {
+	float: left;
+}
+
+.send-b2 {
+	float: right;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>首页</title>
+    {% include 'includes/meta_and_link.html' %}
+
+</head>
+
+<body>
+<!-- 导航栏  -->
+{% include 'includes/header.html' %}
+
+<!-- 内容  -->
+{%
+if not session["username"]
+%}
+<div id="recommend">80%用户的选择：</div>
+<div class="am-g">
+    <div class="am-u-sm-6">
+        <div class="am-thumbnail">
+            <img src="static/img/slideshow/01.jpg" alt=""/>
+            <div class="am-thumbnail-caption">
+                <h3>宫保鸡丁</h3>
+                <p>距您约2km</p>
+                <p>
+                    <button class="am-btn am-btn-primary">购买</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="am-u-sm-6">
+        <div class="am-thumbnail">
+            <img src="static/img/slideshow/03.jpg" alt=""/>
+            <div class="am-thumbnail-caption">
+                <h3>干煸炒肉</h3>
+                <p>距您约2km</p>
+                <p>
+                    <button class="am-btn am-btn-primary">购买</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="am-u-sm-6">
+    <div class="am-thumbnail">
+        <img src="static/img/slideshow/02.jpg" alt=""/>
+        <div class="am-thumbnail-caption">
+            <h3>八爪鱼</h3>
+            <p>距您约2km</p>
+            <p>
+                <button class="am-btn am-btn-primary">购买</button>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="am-u-sm-6">
+    <div class="am-thumbnail">
+        <img src="static/img/slideshow/01.jpg" alt=""/>
+        <div class="am-thumbnail-caption">
+            <h3>宫保鸡丁</h3>
+            <p>距您约2km</p>
+            <p>
+                <button class="am-btn am-btn-primary">购买</button>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="am-u-sm-6">
+    <div class="am-thumbnail">
+        <img src="static/img/slideshow/02.jpg" alt=""/>
+        <div class="am-thumbnail-caption">
+            <h3>八爪鱼</h3>
+            <p>距您约2km</p>
+            <p>
+                <button class="am-btn am-btn-primary">购买</button>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="am-u-sm-6">
+    <div class="am-thumbnail">
+        <img src="static/img/slideshow/03.jpg" alt=""/>
+        <div class="am-thumbnail-caption">
+            <h3>干煸炒肉</h3>
+            <p>距您约2km</p>
+            <p>
+                <button class="am-btn am-btn-primary">购买</button>
+
+            </p>
+        </div>
+    </div>
+</div>
+{%
+else
+%}
+<div id="recommend">为您推荐：</div>
+<center>
+    <div data-am-widget="slider" class="am-slider am-slider-default"
+         data-am-slider='{}' style="width:95%">
+
+        <ul class="am-slides">
+            <li><img src="static/img/slideshow/01.jpg"></li>
+            <li><img src="static/img/slideshow/02.jpg"></li>
+            <li><img src="static/img/slideshow/03.jpg"></li>
+        </ul>
+    </div>
+</center>
+
+
+<hr id="line">
+
+<div id="recommend">今日菜谱：</div>
+<center>
+    <select id="menu">
+        <option value="menu1" selected>菜谱一</option>
+        <option value="qjrs">青椒肉丝</option>
+        <option value="hsr">红烧肉</option>
+        <option value="jmj">椒麻鸡</option>
+    </select>
+    <a href="action/web/send_meal">
+        <button id="index-btn">订餐</button>
+    </a>
+
+
+    <select id="menu">
+        <option value="menu1" selected>菜谱二</option>
+        <option value="qjrs">青椒肉丝</option>
+        <option value="hsr">红烧肉</option>
+        <option value="jmj">椒麻鸡</option>
+    </select>
+    <a href="action/web/send_meal">
+        <button id="index-btn">订餐</button>
+    </a>
+
+
+    <select id="menu">
+        <option value="menu1" selected>菜谱三</option>
+        <option value="qjrs">青椒肉丝</option>
+        <option value="hsr">红烧肉</option>
+        <option value="jmj">椒麻鸡</option>
+    </select>
+    <a href="action/web/send_meal">
+        <button id="index-btn">订餐</button>
+    </a>
+</center>
+{%
+endif
+%}
+
+<!-- 底部栏  -->
+{% include 'includes/footer.html' %}
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>注册</title>
+    {% include 'includes/meta_and_link.html' %}
+</head>
+
+<body>
+<!-- 导航栏  -->
+{% include 'includes/header.html' %}
+<!-- 内容  -->
+
+<form class="am-form" action="action/register" method="post">
+    <fieldset>
+        <legend>注册</legend>
+
+        <div class="am-form-group">
+            <label for="email">邮箱</label> <input type="email" name="username"
+                                                 id="email" placeholder="请输入邮箱账号">
+        </div>
+
+        <div class="am-form-group">
+            <label for="pwd">密码</label> <input type="password" name="user_pwd1"
+                                               id="pwd1" placeholder="请输入密码">
+        </div>
+        <div class="am-form-group">
+            <label for="pwd">确认密码</label> <input type="password" name="user_pwd2"
+                                                 id="pwd2" placeholder="请再次输入密码">
+        </div>
+        <center>
+            <button type="submit" class="am-btn am-btn-default btn-login">注册</button>
+            <br/> <br/>
+            {% if session["error_type"] %}
+            out.print("<p class=\"p-error\">" + session.getAttribute("error_type") + " </p>");
+            {% endif %}
+        </center>
+
+    </fieldset>
+</form>
+
+<!-- 底部栏  -->
+{% include 'includes/footer.html' %}
+</body>
+</html>

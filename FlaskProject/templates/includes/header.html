@@ -1,0 +1,22 @@
+<header data-am-widget="header"
+        class="am-header am-header-default am-header-fixed">
+    <div class="am-header-left am-header-nav">
+        <a href="/index" class=""> <i
+                class="am-header-icon am-icon-home">&nbsp;</i>
+        </a>
+    </div>
+
+    <h1 class="am-header-title">{{ header_title }}</h1>
+
+    {%
+    if session["username"]
+    %}
+    <div class="am-header-right am-header-nav">
+        <form action="/send_meal">
+            <button type="submit" class="no-style-header-button am-header-icon am-icon-cutlery"></button>
+        </form>
+    </div>
+    {%
+    endif
+    %}
+</header>

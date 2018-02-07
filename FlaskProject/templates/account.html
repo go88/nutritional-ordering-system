@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>我的账户</title>
+    {% include 'includes/meta_and_link.html' %}
+</head>
+
+<body>
+<!-- 导航栏  -->
+{% include 'includes/header.html' %}
+<!-- 内容  -->
+<center>
+    <div class="account-username-panel">
+        <div><img class="am-circle account-img" src="static/img/01.jpg"></div>
+        <!-- 默认获取的是用户 邮箱 -->
+        <div><p class="am-kai account-p">{{ session["nickname"] }}</p></div>
+
+    </div>
+</center>
+
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">昵称：{{ session["nickname"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="nickname" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">邮箱：{{ session["username"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="username" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">地址：{{ session["address"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="address" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">联系方式：{{ session["phoneNumber"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="phoneNumber" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">性别：{{ session["gender"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="gender" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">年龄：{{ session["age"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="age" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">身高(cm)：{{ session["height"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="height" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">体重(kg)：{{ session["weight"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="weight" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">腰围(cm)：{{ session["waist"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="waist" class="no-style-list-button am-icon-edit" onclick="onEditClick(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">体脂率(%)：{{ session["BFR"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="BFR" class="no-style-list-button am-icon-repeat" onclick="onRefersh(this)"></button>
+    </div>
+</div>
+<hr>
+<div class="am-g">
+    <div class="am-u-sm-10">代谢指数(KJ)：{{ session["BMR"] }}</div>
+    <div class="am-u-sm-2">
+        <button id="BMR" class="no-style-list-button am-icon-repeat" onclick="onRefersh(this)"></button>
+    </div>
+</div>
+<hr>
+
+<center>
+    <form action="action/logout" method="post">
+        <button type="submit" class="am-btn am-btn-danger">退出当前账户</button>
+    </form>
+</center>
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="edit-prompt">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">编辑</div>
+        <div class="am-modal-bd">
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+
+<!-- 底部栏  -->
+{% include 'includes/footer.html' %}
+
+<!-- JavaScript放在这里提高性能 -->
+<script type="text/javascript">
+	function onEditClick(btn) {
+		$('#edit-prompt').modal({
+			relatedTarget : this,
+			onConfirm : function(e) {
+			    // debugger
+				$.post("action/edit_info", {
+					"edit-id" : btn.id,
+					"edit-value" : e.data
+				}, function(data, status) {
+					location.reload([true])
+				})
+			}
+		});
+	}
+	function onRefersh(btn) {
+		$.post("action/refresh_data", {
+					"edit-id" : btn.id,
+					"username" : '{{session["username"]}}'
+				}, function(data, status) {
+					location.reload([true])
+				})
+	}
+
+</script>
+</body>
+</html>

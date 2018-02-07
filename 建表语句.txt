@@ -1,0 +1,18 @@
+create database seproject;
+
+use seproject;
+
+Create table tb_user(
+username varchar(30) primary key not NULL,
+nickname varchar(30),
+password varchar(30) not NULL,
+address varchar(50),
+phoneNumber varchar(11),
+gender varchar(5),
+age int,
+height int,
+weight int,
+waist int,
+BFR int,
+BMR int
+);
