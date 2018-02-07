@@ -4,6 +4,7 @@ python:
 
 install:
   - pip install flask
+  - pip install pymysql
   
 script:
   - python FlaskProject/main.py
