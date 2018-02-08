@@ -71,7 +71,7 @@ def act_login():
 # 账户验证
 def valid_login(username, password):
     global G_USER
-    G_USER = mysql_oper.find_data(username)
+    G_USER = mysql_oper.find_user(username)
     if G_USER is not None:
         if password == G_USER.password:
             return True
@@ -106,9 +106,9 @@ def act_register():
     request.charset = "UTF-8"
     username = request.form['username']
     password = request.form['user_pwd1']
-    mysql_oper.insert_data(username, password)
+    mysql_oper.insert_user(username, password)
     global G_USER
-    G_USER = mysql_oper.find_data(username)
+    G_USER = mysql_oper.find_user(username)
     refresh_session(session)
     return redirect(url_for('web_account'))
 
