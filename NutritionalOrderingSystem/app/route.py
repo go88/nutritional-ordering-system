@@ -88,6 +88,22 @@ def refresh_all_session(sess):
     return True
 
 
+# 同步user
+def refresh_instance_user(sess):
+    INSTANCE.USER.username = sess['username']
+    INSTANCE.USER.nickname = sess['nickname'] 
+    INSTANCE.USER.addres =  sess['address']
+    INSTANCE.USER.phoneNumber = sess['phoneNumber']
+    INSTANCE.USER.gender = sess['gender']
+    INSTANCE.USER.age = sess['age']
+    INSTANCE.USER.height = sess['height']
+    INSTANCE.USER.weight = sess['weight']
+    INSTANCE.USER.waist = sess['waist']
+    INSTANCE.USER.BFR = sess['BFR']
+    INSTANCE.USER.BMR = sess['BMR'] 
+    return True
+
+
 @app.route("/action/logout", methods=['POST'])
 def act_logout():
     session.clear()
@@ -122,20 +138,20 @@ def act_refresh_data():
     if edit_id == "BFR":
         bfr = float()
         if INSTANCE.USER.gender == "女":
-            bfr = float((INSTANCE.USER.waist * 0.74 - INSTANCE.USER.weight *
-                         0.082 - 34.89) / INSTANCE.USER.weight * 100)
+            bfr = float((float(INSTANCE.USER.waist) * 0.74 - float(INSTANCE.USER.weight) *
+                         0.082 - 34.89) / float(INSTANCE.USER.weight) * 100)
         else:
-            bfr = float((INSTANCE.USER.waist * 0.74 - INSTANCE.USER.weight *
-                         0.082 - 44.74) / INSTANCE.USER.weight * 100)
+            bfr = float((float(INSTANCE.USER.waist) * 0.74 - float(INSTANCE.USER.weight) *
+                         0.082 - 44.74) / float(INSTANCE.USER.weight) * 100)
         value = ("%.2f" % bfr)
     elif edit_id == "BMR":
         bmr = float()
         if INSTANCE.USER.gender == "男":
-            bmr = float(INSTANCE.USER.weight * 13.7 + INSTANCE.USER.height *
-                        0.5 - 6.8 * INSTANCE.USER.age + 66)
+            bmr = float(float(INSTANCE.USER.weight) * 13.7 + float(INSTANCE.USER.height) * 0.5
+             - 6.8 * float(INSTANCE.USER.age) + 66)
         else:
-            bmr = float(INSTANCE.USER.weight * 9.6 + INSTANCE.USER.height *
-                        1.8 - 4.7 * INSTANCE.USER.age + 665)
+            bmr = float(float(INSTANCE.USER.weight) * 9.6 + float(INSTANCE.USER.height) * 1.8 
+            - 4.7 * float(INSTANCE.USER.age) + 665)
         value = ("%.2f" % bmr)
 
     # 数据库操作
@@ -143,6 +159,8 @@ def act_refresh_data():
 
     # 前端更新
     session[edit_id] = value
+    # 同步user
+    refresh_instance_user(session)
     return redirect(url_for('web_account'))
 
 
