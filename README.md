@@ -1,9 +1,9 @@
 人体营养需求订餐
 ==========
 
-[![license](https://img.shields.io/github/license/go88/nutritional-ordering-system.svg?)](https://choosealicense.com/licenses/mit/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?)](https://github.com/go88/nutritional-ordering-system/pulls)
-[![GitHub (pre-)release](https://img.shields.io/github/release/go88/nutritional-ordering-system/all.svg?)](https://github.com/go88/nutritional-ordering-system/releases)
+[![license](https://img.shields.io/github/license/go88/nutritional-ordering-system.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/go88/nutritional-ordering-system/pulls)
+[![GitHub (pre-)release](https://img.shields.io/github/release/go88/nutritional-ordering-system/all.svg?style=for-the-badge)](https://github.com/go88/nutritional-ordering-system/releases)
 
 flask的项目，运行条件：
 
